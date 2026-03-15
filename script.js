@@ -63,11 +63,32 @@
   }
 
   /* =========================
-     Header Scroll State
+     Header Scroll State & Smart Hide/Show
      ========================= */
+  let lastScrollY = window.scrollY;
+
   const updateHeader = () => {
     if (!header) return;
-    header.classList.toggle('is-scrolled', window.scrollY > 16);
+    const currentScrollY = window.scrollY;
+    
+    // Add is-scrolled class for shrinking/styling
+    header.classList.toggle('is-scrolled', currentScrollY > 20);
+
+    // Smart Hide/Show logic
+    if (currentScrollY > 150) { // Only start hiding after some scroll
+      if (currentScrollY > lastScrollY && !header.classList.contains('is-hidden')) {
+        // Scrolling Down - Hide Header
+        header.classList.add('is-hidden');
+      } else if (currentScrollY < lastScrollY && header.classList.contains('is-hidden')) {
+        // Scrolling Up - Show Header
+        header.classList.remove('is-hidden');
+      }
+    } else {
+      // Near Top - Always Show
+      header.classList.remove('is-hidden');
+    }
+
+    lastScrollY = currentScrollY;
   };
 
   updateHeader();
