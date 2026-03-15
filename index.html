@@ -51,7 +51,10 @@
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contato">Solicitar orçamento</a>
-            <a class="btn btn-ghost" href="https://wa.me/5585982023640?text=Olá%2C%20vim%20pelo%20site%20da%20MSF%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+            <a class="btn btn-ghost btn-whatsapp-hero" href="https://wa.me/5585982023640?text=Olá%2C%20vim%20pelo%20site%20da%20MSF%20e%20quero%20falar%20sobre%20um%20projeto." target="_blank" rel="noopener noreferrer">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" width="20" height="20">
+              Falar no WhatsApp
+            </a>
           </div>
 
           <ul class="hero-metrics" aria-label="Indicadores MSF">
@@ -314,15 +317,29 @@
           <h2 class="section-title">Ecossistema técnico com fabricantes globais e fornecedores estratégicos.</h2>
         </header>
 
-        <ul class="partner-grid" aria-label="Parceiros MSF">
-          <li data-reveal>ABB</li>
-          <li data-reveal>Siemens</li>
-          <li data-reveal>Schneider Electric</li>
-          <li data-reveal>WEG</li>
-          <li data-reveal>CHINT</li>
-          <li data-reveal>Delta</li>
-          <li data-reveal>Elitek</li>
-        </ul>
+        <div class="carousel-container">
+          <div class="carousel-track">
+            <ul class="partner-grid" aria-label="Parceiros MSF">
+              <li data-reveal><img src="https://upload.wikimedia.org/wikipedia/commons/0/00/ABB_logo.svg" alt="ABB"></li>
+              <li data-reveal><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg" alt="Siemens"></li>
+              <li data-reveal><img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/SchneiderElectric_Logo.svg" alt="Schneider Electric"></li>
+              <li data-reveal><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Weg_logo_blue_vector.svg" alt="WEG"></li>
+              <li data-reveal><img src="https://iconape.com/wp-content/files/zl/187698/svg/187698.svg" alt="CHINT"></li>
+              <li data-reveal><img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/DELTA_Electronics_Logo.png" alt="Delta"></li>
+              <li data-reveal><img src="https://cdn.prod.website-files.com/66a8d3835b5045aeac88c6ee/67f72257fa47b33e78c84b66_Elitek_logo_2025.png" alt="Elitek"></li>
+            </ul>
+            <!-- Duplicate for seamless loop -->
+            <ul class="partner-grid" aria-hidden="true">
+              <li><img src="https://upload.wikimedia.org/wikipedia/commons/0/00/ABB_logo.svg" alt="ABB"></li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Siemens_AG_logo.svg" alt="Siemens"></li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/SchneiderElectric_Logo.svg" alt="Schneider Electric"></li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Weg_logo_blue_vector.svg" alt="WEG"></li>
+              <li><img src="https://iconape.com/wp-content/files/zl/187698/svg/187698.svg" alt="CHINT"></li>
+              <li><img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/DELTA_Electronics_Logo.png" alt="Delta"></li>
+              <li><img src="https://cdn.prod.website-files.com/66a8d3835b5045aeac88c6ee/67f72257fa47b33e78c84b66_Elitek_logo_2025.png" alt="Elitek"></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -408,7 +425,7 @@
 
   <!-- WhatsApp Flutuante -->
   <a class="whatsapp-float" href="https://wa.me/5585982023640?text=Olá%2C%20vim%20pelo%20site%20da%20MSF%20e%20quero%20um%20orçamento." target="_blank" rel="noopener noreferrer" aria-label="Falar com a MSF no WhatsApp">
-    <span>WhatsApp</span>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
   </a>
 
   <script src="script.js"></script>
