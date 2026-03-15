@@ -3,23 +3,23 @@
    ========================= */
 :root {
   --bg: #07090d;
-  --bg-soft: #0f141b;
-  --bg-panel: #151d27;
-  --surface: #ffffff;
-  --surface-alt: #f2f5f8;
+  --bg-soft: #0c1118;
+  --bg-panel: #131a22;
+  --surface: #f9fbfe; /* Softer off-white */
+  --surface-alt: #f1f4f8;
   --text-light: #f3f6fa;
   --text-light-muted: #aeb9c7;
-  --text-dark: #11161d;
-  --text-dark-muted: #5f6975;
-  --line-light: rgba(255, 255, 255, 0.16);
-  --line-dark: rgba(17, 22, 29, 0.14);
+  --text-dark: #1a202c; /* Softer dark text */
+  --text-dark-muted: #53647a;
+  --line-light: rgba(255, 255, 255, 0.12);
+  --line-dark: rgba(22, 33, 49, 0.08); /* More subtle line */
   --accent: #7cb2e2;
   --accent-strong: #9ec9ef;
   --radius-sm: 14px;
   --radius-md: 18px;
   --radius-lg: 26px;
-  --shadow-soft: 0 18px 40px rgba(12, 18, 28, 0.08);
-  --shadow-strong: 0 30px 70px rgba(6, 10, 16, 0.45);
+  --shadow-soft: 0 16px 36px rgba(22, 33, 49, 0.06);
+  --shadow-strong: 0 30px 60px rgba(4, 7, 12, 0.4);
   --header-height: 80px;
 }
 
@@ -99,6 +99,7 @@ section {
 .section-dark {
   background: var(--bg-soft);
   color: var(--text-light);
+  background-image: radial-gradient(circle at 80% 0%, rgba(124, 178, 226, 0.03), transparent 30%);
 }
 
 .eyebrow {
@@ -299,17 +300,21 @@ section {
   min-height: 100svh;
   padding: calc(var(--header-height) + 4.4rem) 0 5.8rem;
   overflow: hidden;
-  background:
-    radial-gradient(110% 90% at 80% 80%, rgba(124, 178, 226, 0.14), transparent 65%),
-    radial-gradient(120% 90% at 10% -10%, rgba(57, 74, 96, 0.4), transparent 65%),
-    #06090e;
+  background: 
+    radial-gradient(circle at 80% 20%, rgba(124, 178, 226, 0.12), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(57, 74, 96, 0.15), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(10, 15, 24, 1), #06090e);
 }
 
 .hero-gradient {
   position: absolute;
-  inset: -35% -30% 35%;
+  inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at center, rgba(155, 201, 239, 0.2), transparent 58%);
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(155, 201, 239, 0.08), transparent 40%),
+    radial-gradient(circle at 90% 90%, rgba(124, 178, 226, 0.05), transparent 40%);
+  filter: blur(60px);
+  z-index: 1;
 }
 
 .hero-grid {
