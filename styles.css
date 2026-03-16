@@ -118,10 +118,23 @@ section {
   max-width: 860px;
 }
 
-#parceiros .section-header {
+#parceiros .section-header,
+#diferenciais .section-header,
+#solucoes .section-header,
+#media-tensao .section-header,
+#portfolio .section-header {
   margin-inline: auto;
   text-align: center;
 }
+
+#parceiros .section-description,
+#diferenciais .section-description,
+#solucoes .section-description,
+#media-tensao .section-description,
+#portfolio .section-description {
+  margin-inline: auto;
+}
+
 
 /* =========================
    Buttons
@@ -673,11 +686,15 @@ section {
    ========================= */
 .cases-showcase {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
-.case-card {
+.case-card,
+.case-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   border-radius: var(--radius-md);
   border: 1px solid var(--line-dark);
   background: #ffffff;
@@ -685,7 +702,12 @@ section {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.case-card:hover {
+.case-list {
+  background: linear-gradient(158deg, #ffffff, #ecf1f7);
+}
+
+.case-card:hover,
+.case-list:hover {
   transform: translateY(-5px);
   border-color: var(--accent);
   box-shadow: 0 12px 30px rgba(124, 178, 226, 0.15);
@@ -693,21 +715,20 @@ section {
 
 .case-card img {
   width: 100%;
-  height: 250px;
+  height: 240px;
   object-fit: cover;
 }
 
-.case-card-feature img {
-  height: 340px;
-}
-
 .case-content {
-  padding: 1.25rem;
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .case-label {
-  margin-bottom: 0.52rem;
-  font-size: 0.7rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.13em;
   color: #63788f;
@@ -715,32 +736,23 @@ section {
 }
 
 .case-content h3 {
-  margin-bottom: 0.58rem;
-  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+  font-size: 1.25rem;
 }
 
 .case-content p {
   color: var(--text-dark-muted);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .case-list {
-  border-radius: var(--radius-md);
-  border: 1px solid var(--line-dark);
-  background: linear-gradient(158deg, #ffffff, #ecf1f7);
-  padding: 1.4rem;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.case-list:hover {
-  transform: translateY(-5px);
-  border-color: var(--accent);
-  box-shadow: 0 12px 30px rgba(124, 178, 226, 0.15);
+  padding: 1.5rem;
 }
 
 .case-list h3 {
-  margin-bottom: 0.9rem;
-  font-size: 1.05rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .case-list ul {
@@ -885,9 +897,13 @@ section {
 .section-contact::before {
   content: "";
   position: absolute;
-  inset: -35% 45% 20% -10%;
+  inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at center, rgba(130, 186, 235, 0.19), transparent 68%);
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(124, 178, 226, 0.12), transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(57, 74, 96, 0.15), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(130, 186, 235, 0.08), transparent 70%);
+  opacity: 0.8;
 }
 
 .contact-layout {
@@ -902,11 +918,27 @@ section {
 
 .contact-copy {
   max-width: 800px;
+  margin-bottom: 1rem;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+.contact-copy .section-title {
+  margin-bottom: 2rem;
 }
 
 .contact-copy p {
   color: var(--text-light-muted);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 65ch;
+  margin-inline: auto;
 }
 
 .contact-form {
@@ -1337,18 +1369,4 @@ textarea {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
 
-  [data-reveal] {
-    opacity: 1;
-    transform: none;
-  }
-}
