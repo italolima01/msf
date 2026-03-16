@@ -7,6 +7,16 @@
   const nav = document.querySelector('.main-nav');
   const overlay = document.querySelector('.nav-overlay');
   const navLinks = nav ? nav.querySelectorAll('a') : [];
+  const brandLink = document.querySelector('.brand');
+
+  // Smooth scroll to top when clicking the logo
+  if (brandLink) {
+    brandLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   const closeMenu = () => {
     if (!menuToggle || !nav || !overlay) return;
@@ -65,30 +75,12 @@
   /* =========================
      Header Scroll State & Smart Hide/Show
      ========================= */
-  let lastScrollY = window.scrollY;
-
   const updateHeader = () => {
     if (!header) return;
     const currentScrollY = window.scrollY;
     
     // Add is-scrolled class for shrinking/styling
     header.classList.toggle('is-scrolled', currentScrollY > 20);
-
-    // Smart Hide/Show logic
-    if (currentScrollY > 150) { // Only start hiding after some scroll
-      if (currentScrollY > lastScrollY && !header.classList.contains('is-hidden')) {
-        // Scrolling Down - Hide Header
-        header.classList.add('is-hidden');
-      } else if (currentScrollY < lastScrollY && header.classList.contains('is-hidden')) {
-        // Scrolling Up - Show Header
-        header.classList.remove('is-hidden');
-      }
-    } else {
-      // Near Top - Always Show
-      header.classList.remove('is-hidden');
-    }
-
-    lastScrollY = currentScrollY;
   };
 
   updateHeader();
