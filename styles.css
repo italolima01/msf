@@ -118,6 +118,11 @@ section {
   max-width: 860px;
 }
 
+#parceiros .section-header {
+  margin-inline: auto;
+  text-align: center;
+}
+
 /* =========================
    Buttons
    ========================= */
@@ -337,7 +342,7 @@ section {
 .hero {
   position: relative;
   min-height: 100svh;
-  padding: calc(var(--header-height) + 4.4rem) 0 5.8rem;
+  padding: calc(var(--header-height) + 4.4rem) 0 0;
   overflow: hidden;
   background: 
     radial-gradient(circle at 80% 20%, rgba(124, 178, 226, 0.12), transparent 45%),
@@ -365,9 +370,13 @@ section {
   align-items: end;
 }
 
+.hero-content {
+  padding-bottom: 5.8rem;
+}
+
 .hero h1 {
   margin-bottom: 1.35rem;
-  font-size: clamp(2.3rem, 5.7vw, 5.2rem);
+  font-size: clamp(2rem, 5vw, 4.2rem);
   max-width: 11ch;
 }
 
@@ -487,10 +496,10 @@ section {
 
 .about-card {
   padding: 1.6rem;
-  background: #ffffff;
-  border: 1px solid var(--line-dark);
+  background: linear-gradient(165deg, rgba(23, 33, 44, 0.95), rgba(10, 15, 22, 0.98));
+  border: 1px solid var(--line-light);
   border-radius: var(--radius-md);
-  box-shadow: 0 8px 24px rgba(22, 33, 49, 0.04);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -501,21 +510,26 @@ section {
 }
 
 .card-icon {
-  font-size: 1.6rem;
-  margin-bottom: 1rem;
-  filter: drop-shadow(0 4px 10px rgba(124, 178, 226, 0.2));
+  margin-bottom: 1.2rem;
+}
+
+.card-icon svg {
+  width: 32px;
+  height: 32px;
+  color: #9ab0c7;
+  stroke-width: 1.5px;
 }
 
 .about-card h3 {
   font-size: 1.1rem;
   margin-bottom: 0.6rem;
-  color: var(--text-dark);
+  color: #eef6ff;
 }
 
 .about-card p {
   font-size: 0.88rem;
   line-height: 1.6;
-  color: var(--text-dark-muted);
+  color: #acb6c2;
   margin-bottom: 0;
 }
 
@@ -1273,6 +1287,11 @@ textarea {
   .hero {
     min-height: auto;
     padding-top: calc(var(--header-height) + 3.3rem);
+    padding-bottom: 0;
+  }
+
+  .hero-content {
+    padding-bottom: 2.5rem;
   }
 
   .hero-metrics,
