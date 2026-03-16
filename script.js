@@ -175,16 +175,8 @@
       });
     }
 
-    // Flip Card Toggle — ignore if click came from a nav button
-    carouselCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (e.target.closest('.carousel-nav')) return;
-        card.classList.toggle('is-flipped');
-      });
-    });
-
     window.addEventListener('resize', () => {
-      currentIndex = 0; // reset position on resize
+      currentIndex = 0;
       updateCarousel();
     });
 
