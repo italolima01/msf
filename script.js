@@ -121,11 +121,73 @@
     revealItems.forEach((item) => item.classList.add('is-visible'));
   }
 
-  /* =========================
-     Footer Year
-     ========================= */
-  const year = document.getElementById('currentYear');
-  if (year) {
-    year.textContent = String(new Date().getFullYear());
+  /* ============================================================
+     Soluções Carousel & Flip-Card Logic
+     ============================================================ */
+  const carouselTrack = document.querySelector('.solutions-track');
+  const carouselCards = document.querySelectorAll('.solution-card');
+  const prevBtn = document.querySelector('.carousel-nav.prev');
+  const nextBtn = document.querySelector('.carousel-nav.next');
+  
+  if (carouselTrack && carouselCards.length > 0) {
+    let currentIndex = 0;
+    const GAP = 24; // 1.5rem
+
+    const getVisibleCount = () => {
+      if (window.innerWidth > 1024) return 3;
+      if (window.innerWidth > 768)  return 2;
+      return 1;
+    };
+
+    const setCardWidths = () => {
+      const wrapperW = carouselTrack.parentElement.clientWidth;
+      const count   = getVisibleCount();
+      const cardW   = (wrapperW - GAP * (count - 1)) / count;
+      carouselCards.forEach(c => {
+        c.style.width    = cardW + 'px';
+        c.style.flexBasis = cardW + 'px';
+      });
+      return cardW;
+    };
+
+    const updateCarousel = () => {
+      const cardW = setCardWidths();
+      const moveDistance = (cardW + GAP) * currentIndex;
+      carouselTrack.style.transform = `translateX(-${moveDistance}px)`;
+
+      const maxIndex = Math.max(0, carouselCards.length - getVisibleCount());
+      if (prevBtn) prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
+      if (nextBtn) nextBtn.style.opacity = currentIndex >= maxIndex ? '0.4' : '1';
+    };
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const maxIndex = Math.max(0, carouselCards.length - getVisibleCount());
+        if (currentIndex < maxIndex) { currentIndex++; updateCarousel(); }
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentIndex > 0) { currentIndex--; updateCarousel(); }
+      });
+    }
+
+    // Flip Card Toggle — ignore if click came from a nav button
+    carouselCards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.carousel-nav')) return;
+        card.classList.toggle('is-flipped');
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      currentIndex = 0; // reset position on resize
+      updateCarousel();
+    });
+
+    updateCarousel();
   }
 })();
