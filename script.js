@@ -174,4 +174,67 @@
 
     updateCarousel();
   }
+
+  /* ============================================================
+     Soluções Modal Highlight Logic
+     ============================================================ */
+  const solutionsModal = document.getElementById('solutionModal');
+  const modalOpenBtns = document.querySelectorAll('.js-open-modal');
+  const modalCloseBtns = document.querySelectorAll('.js-modal-close');
+  
+  if (solutionsModal) {
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalShortDesc = document.getElementById('modalShortDesc');
+    const modalLongDesc = document.getElementById('modalLongDesc');
+
+    const openModal = (card) => {
+      // Get data from the card
+      const imgElem = card.querySelector('.card-bg');
+      const titleElem = card.querySelector('h3');
+      const shortDescElem = card.querySelector('.card-content p');
+      
+      const imgSrc = imgElem ? imgElem.src : '';
+      const title = titleElem ? titleElem.textContent : '';
+      const shortDesc = shortDescElem ? shortDescElem.textContent : '';
+      const longDesc = card.getAttribute('data-full-desc') || '';
+
+      // Populate modal
+      if (modalImg) modalImg.src = imgSrc;
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalShortDesc) modalShortDesc.textContent = shortDesc;
+      if (modalLongDesc) modalLongDesc.textContent = longDesc;
+
+      // Show modal
+      solutionsModal.classList.add('is-active');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    };
+
+    const closeModal = () => {
+      solutionsModal.classList.remove('is-active');
+      document.body.style.overflow = '';
+    };
+
+    modalOpenBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = e.target.closest('.solution-card');
+        if (card) openModal(card);
+      });
+    });
+
+    modalCloseBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal();
+      });
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && solutionsModal.classList.contains('is-active')) {
+        closeModal();
+      }
+    });
+  }
 })();

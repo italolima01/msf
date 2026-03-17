@@ -762,6 +762,167 @@ section {
 }
 
 /* =========================
+   Soluções Modal Destaque
+   ========================= */
+.solution-highlight-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.solution-highlight-modal.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 7, 11, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-content-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.solution-highlight-modal.is-active .modal-content-wrapper {
+  transform: translateY(0) scale(1);
+}
+
+.modal-btn-close {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.modal-btn-close:hover {
+  color: var(--accent);
+  transform: scale(1.1);
+}
+.modal-btn-close svg {
+  width: 28px;
+  height: 28px;
+}
+
+.modal-card {
+  display: flex;
+  background: var(--bg-panel);
+  border: 1px solid rgba(124, 178, 226, 0.15);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(124, 178, 226, 0.05);
+}
+
+.modal-image-col {
+  flex: 1;
+  min-width: 350px;
+  position: relative;
+}
+
+.modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+}
+
+.modal-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(13, 26, 34, 0) 60%, rgba(13, 26, 34, 1) 100%);
+}
+
+.modal-text-col {
+  flex: 1.2;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(145deg, var(--bg-panel), rgba(12, 16, 21, 0.95));
+  position: relative;
+  z-index: 2;
+}
+
+.modal-uptitle {
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: block;
+  font-weight: 700;
+}
+
+.modal-title {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.modal-text-col .card-separator {
+  margin: 0 0 1.5rem 0;
+  width: 50px;
+  height: 4px;
+}
+
+.modal-short-desc {
+  color: var(--text-light-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  border-left: 2px solid rgba(124, 178, 226, 0.3);
+  padding-left: 1rem;
+  font-weight: 600;
+}
+
+.modal-long-desc {
+  color: #e0eaf5;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .modal-card {
+    flex-direction: column;
+    max-height: 85vh;
+    overflow-y: auto;
+  }
+  .modal-image-col {
+    min-height: 250px;
+  }
+  .modal-image-overlay {
+    background: linear-gradient(to bottom, rgba(13, 26, 34, 0) 60%, rgba(13, 26, 34, 1) 100%);
+  }
+  .modal-text-col {
+    padding: 2rem 1.5rem;
+  }
+  .modal-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* =========================
    Diferenciais
    ========================= */
 .section-dark .section-header {
