@@ -114,21 +114,25 @@
   }
 
   /* ============================================================
-     Soluções Carousel & Flip-Card Logic
+     Soluções Carousel & Dots Logic
      ============================================================ */
   const carouselTrack = document.querySelector('.solutions-track');
   const carouselCards = document.querySelectorAll('.solution-card');
-  const prevBtn = document.querySelector('.carousel-nav.prev');
-  const nextBtn = document.querySelector('.carousel-nav.next');
+  const dotsContainer = document.querySelector('.carousel-dots');
   
-  if (carouselTrack && carouselCards.length > 0) {
+  if (carouselTrack && carouselCards.length > 0 && dotsContainer) {
     let currentIndex = 0;
     const GAP = 24; // 1.5rem
+    let dots = [];
 
     const getVisibleCount = () => {
       if (window.innerWidth > 1024) return 3;
       if (window.innerWidth > 768)  return 2;
       return 1;
+    };
+
+    const getMaxIndex = () => {
+      return Math.max(0, carouselCards.length - getVisibleCount());
     };
 
     const setCardWidths = () => {
@@ -142,36 +146,66 @@
       return cardW;
     };
 
-    const updateCarousel = () => {
-      const cardW = setCardWidths();
-      const moveDistance = (cardW + GAP) * currentIndex;
-      carouselTrack.style.transform = `translateX(-${moveDistance}px)`;
-
-      const maxIndex = Math.max(0, carouselCards.length - getVisibleCount());
-      if (prevBtn) prevBtn.style.opacity = currentIndex === 0 ? '0.4' : '1';
-      if (nextBtn) nextBtn.style.opacity = currentIndex >= maxIndex ? '0.4' : '1';
+    const buildDots = () => {
+      dotsContainer.innerHTML = '';
+      dots = [];
+      const maxIndex = getMaxIndex();
+      
+      for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('button');
+        dot.classList.add('carousel-dot');
+        dot.setAttribute('aria-label', `Ir para o slide ${i + 1}`);
+        if (i === currentIndex) dot.classList.add('is-active');
+        
+        dot.addEventListener('click', () => {
+          currentIndex = i;
+          updateCarousel();
+        });
+        
+        dotsContainer.appendChild(dot);
+        dots.push(dot);
+      }
     };
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const maxIndex = Math.max(0, carouselCards.length - getVisibleCount());
-        if (currentIndex < maxIndex) { currentIndex++; updateCarousel(); }
+    const updateDots = () => {
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('is-active');
+        } else {
+          dot.classList.remove('is-active');
+        }
       });
-    }
+    };
 
-    if (prevBtn) {
-      prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (currentIndex > 0) { currentIndex--; updateCarousel(); }
-      });
-    }
+    const updateCarousel = () => {
+      const cardW = setCardWidths();
+      
+      // Safety check - make sure we haven't resized into an invalid index
+      const maxIndex = getMaxIndex();
+      if (currentIndex > maxIndex) {
+        currentIndex = maxIndex;
+      }
+      
+      const moveDistance = (cardW + GAP) * currentIndex;
+      carouselTrack.style.transform = `translateX(-${moveDistance}px)`;
+      
+      updateDots();
+    };
 
     window.addEventListener('resize', () => {
-      currentIndex = 0;
+      const oldMaxIndex = dots.length - 1;
+      const newMaxIndex = getMaxIndex();
+      
+      if (oldMaxIndex !== newMaxIndex) {
+        // Number of dots needed changed due to resize
+        currentIndex = 0; 
+        buildDots();
+      }
       updateCarousel();
     });
 
+    // Initialize
+    buildDots();
     updateCarousel();
   }
 

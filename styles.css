@@ -456,18 +456,20 @@ section {
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 36px 46px rgba(6, 10, 15, 0.56));
+  z-index: 20;
 }
 
 .hero-spec-card {
   position: absolute;
-  right: 2%;
-  top: 10%;
+  right: -5%;
+  top: -5%;
   max-width: 285px;
   padding: 1rem 1.05rem;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(159, 206, 244, 0.42);
   background: rgba(19, 27, 37, 0.82);
   backdrop-filter: blur(7px);
+  z-index: 10;
 }
 
 .hero-spec-card p {
@@ -710,55 +712,37 @@ section {
   box-shadow: 0 0 20px rgba(124, 178, 226, 0.45);
 }
 
-/* --- Carousel nav buttons --- */
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(14, 20, 29, 0.72);
-  border: 1px solid rgba(124, 178, 226, 0.25);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+/* --- Carousel Dots --- */
+.carousel-dots {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(124, 178, 226, 0.2);
+  border: 1px solid rgba(124, 178, 226, 0.1);
   cursor: pointer;
-  z-index: 10;
-  color: #e0eaf5;
-  transition: background 0.3s ease, border-color 0.3s ease,
-              box-shadow 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
 }
 
-.carousel-nav:hover {
-  background: rgba(124, 178, 226, 0.18);
+.carousel-dot:hover {
+  background: rgba(124, 178, 226, 0.5);
+  transform: scale(1.1);
+}
+
+.carousel-dot.is-active {
+  background: var(--accent);
   border-color: var(--accent);
-  color: #ffffff;
-  box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(124, 178, 226, 0.35);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-nav:active {
-  transform: translateY(-50%) scale(0.96);
-}
-
-.carousel-nav svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-  flex-shrink: 0;
-}
-
-.carousel-nav.prev { left: 6px; }
-.carousel-nav.next { right: 6px; }
-
-@media (max-width: 768px) {
-  .carousel-nav {
-    display: none;
-  }
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(124, 178, 226, 0.4);
 }
 
 /* =========================
@@ -1690,9 +1674,10 @@ textarea {
   }
 
   .hero-spec-card {
-    top: 2%;
-    right: 4%;
+    top: -5%;
+    right: 0%;
     max-width: 250px;
+    z-index: 10;
   }
 
   .case-card-feature img,
